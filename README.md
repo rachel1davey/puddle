@@ -1,4 +1,4 @@
-### YourMarket - Full stack marketplace web application
+## YourMarket - Full stack marketplace web application
 
 # To-Do:
 
