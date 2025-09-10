@@ -25,3 +25,4 @@ Full-stack marketplace web app built with Django
 ## Tech Stack
 HTML, CSS, Django, TailwindCSS
 
+# Trigger rebuild
