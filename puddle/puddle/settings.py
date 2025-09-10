@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-!3+!2s7mjov^&cl1dj!c7+qp0jt51%%5-p0=nd73eni*rfatk0
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['puddlemarketplace-063c2c73ca60.herokuapp.com/', 'localhost']
+ALLOWED_HOSTS = ['puddlemarketplace-063c2c73ca60.herokuapp.com/', 'localhost', '127.0.0.1']
 
 LOGIN_URL = '/login/'
 LOGIN_REDIRECT_URL = '/'
@@ -83,27 +83,20 @@ WSGI_APPLICATION = 'puddle.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-# Default database (SQLite)
-# Default: SQLite for local development
-if os.environ.get("DATABASE_URL"):  # Heroku sets this automatically
+if os.environ.get("DATABASE_URL"):  # Production (Heroku)
     DATABASES = {
-        'default': dj_database_url.config(conn_max_age=600, ssl_require=True)
+        'default': dj_database_url.config(
+            conn_max_age=600,
+            ssl_require=True
+        )
     }
-else:  # local development
+else:  # Local development
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+            'NAME': BASE_DIR / 'db.sqlite3',
         }
     }
-
-
-# Override database configuration with $DATABASE_URL from Heroku
-DATABASES['default'] = dj_database_url.config(
-    default=os.environ.get('DATABASE_URL', f"sqlite:///{BASE_DIR / 'db.sqlite3'}"),
-    conn_max_age=600,
-    ssl_require=True
-)
 
 
 # Password validation
