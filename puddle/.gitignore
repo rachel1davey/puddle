@@ -1,0 +1,35 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Environments
+env/
+.venv/
+venv/
+ENV/
+
+# Django
+staticfiles/
+media/
+*.log
+
+# SQLite (local dev)
+*.sqlite3
+
+# VSCode / PyCharm
+.vscode/
+.idea/
+
+# Node (if used)
+node_modules/
+
+# Secrets
+.env
+*.env
+.env.*
