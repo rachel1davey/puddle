@@ -7,3 +7,4 @@ tailwind.config.js
 env
 .vscode/
 venv/
+to-do.txt
