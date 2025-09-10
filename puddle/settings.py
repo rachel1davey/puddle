@@ -30,6 +30,8 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 DEBUG = os.environ.get('DEBUG', 'False') == 'True'
 
 ALLOWED_HOSTS = ['puddlemarketplace-063c2c73ca60.herokuapp.com/', 'localhost', '127.0.0.1', 'puddlemarketplace-063c2c73ca60.herokuapp.com']
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
 
 LOGIN_URL = '/login/'
 LOGIN_REDIRECT_URL = '/'
