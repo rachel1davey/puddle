@@ -24,8 +24,6 @@ def signup(request):
             form.save()
             return redirect('/login/')
     else:
-            form = SignUpForm()
+        form = SignUpForm()
     # display blank form ^
-
-    form = SignUpForm()
     return render(request, 'core/signup.html', {'form': form})
