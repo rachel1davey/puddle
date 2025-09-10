@@ -84,12 +84,19 @@ WSGI_APPLICATION = 'puddle.wsgi.application'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 # Default database (SQLite)
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / "db.sqlite3",
+# Default: SQLite for local development
+if os.environ.get("DATABASE_URL"):  # Heroku sets this automatically
+    DATABASES = {
+        'default': dj_database_url.config(conn_max_age=600, ssl_require=True)
     }
-}
+else:  # local development
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        }
+    }
+
 
 # Override database configuration with $DATABASE_URL from Heroku
 DATABASES['default'] = dj_database_url.config(
