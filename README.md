@@ -1,5 +1,5 @@
 
-# YourMarket
+# Puddle
 
 Full-stack marketplace web app built with Django
 
@@ -18,7 +18,7 @@ Full-stack marketplace web app built with Django
 - Seller profiles (showing items for sale)
 - Like items feature
 - Light/dark mode
-- Accessible on all platforms
+- Responsive
 
 
 
