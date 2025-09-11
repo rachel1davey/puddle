@@ -6,42 +6,61 @@
     <title>{% block title %}{% endblock %} | Puddle</title>
     <script src="https://cdn.tailwindcss.com"></script>
   </head>
-<body>
-    <nav class="py-6 px-6 flex justify-between items-center border-b border-gray-200">
-        <a href="/" class="text-xl font-semibold">Puddle</a>
-        <div class="space-x-6">
-            <a href="{% url 'item:new' %}" class="text-lg font-semibold hover:text-gray-500">New Item</a>
-            <a href="{% url 'item:browse' %}" class="text-lg font-semibold hover:text-gray-500">Browse</a>
-            {% if user.is_authenticated %}
-<a href="{% url 'core:signup' %}" class="px-6 py-3 text-lg font-semibold bg-teal-500 text-white rounded-xl hover:bg-teal-700">Inbox</a>
-            <a href="{% url 'dashboard:index' %}" class="px-6 py-3 text-lg font-semibold bg-gray-500 text-white rounded-xl hover:bg-gray-700">Dashboard</a>
-            {% else %}
-            <a href="{% url 'core:signup' %}" class="px-6 py-3 text-lg font-semibold bg-teal-500 text-white rounded-xl hover:bg-teal-700">Sign Up</a>
-            <a href="{% url 'core:login' %}" class="px-6 py-3 text-lg font-semibold bg-gray-500 text-white rounded-xl hover:bg-gray-700">Log In</a>
-            {% endif %}
+<body class="bg-gray-50 text-gray-900">
 
-        </div>
-    </nav>
-    <div class="px-6 py-4">
-        {% block content %}
-        {% endblock  %}
+  <!-- Navbar -->
+  <nav class="py-6 px-6 border-b border-gray-200 flex flex-wrap items-center justify-between">
+    <a href="/" class="text-xl font-semibold">Puddle</a>
+
+    <!-- Hamburger for mobile -->
+    <button class="block md:hidden text-gray-500" id="mobile-menu-btn">☰</button>
+
+    <!-- Nav links -->
+    <div class="hidden w-full md:flex md:w-auto md:space-x-6 mt-4 md:mt-0" id="nav-links">
+      <a href="{% url 'item:new' %}" class="text-lg font-semibold hover:text-gray-500">New Item</a>
+      <a href="{% url 'item:browse' %}" class="text-lg font-semibold hover:text-gray-500">Browse</a>
+
+      {% if user.is_authenticated %}
+        <a href="{% url 'core:signup' %}" class="px-6 py-3 text-lg font-semibold bg-teal-500 text-white rounded-xl hover:bg-teal-700">Inbox</a>
+        <a href="{% url 'dashboard:index' %}" class="px-6 py-3 text-lg font-semibold bg-gray-500 text-white rounded-xl hover:bg-gray-700">Dashboard</a>
+      {% else %}
+        <a href="{% url 'core:signup' %}" class="px-6 py-3 text-lg font-semibold bg-teal-500 text-white rounded-xl hover:bg-teal-700">Sign Up</a>
+        <a href="{% url 'core:login' %}" class="px-6 py-3 text-lg font-semibold bg-gray-500 text-white rounded-xl hover:bg-gray-700">Log In</a>
+      {% endif %}
     </div>
-    <footer class="py-6 px-6 flex justify-between bg-gray-800">
-        <div class="w-2/3 pr-10">
-            <h3 class="mb-5 font-semibold text-gray-400">About</h3>
+  </nav>
 
-            <p class="text-lg text-gray-500">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla convallis egestas rhoncus.</p>
-        </div>
-        <div class="w-1/3">
-            <h3 class="mb-5 font-semibold text-gray-400">Menu</h3>
+  <!-- Main Content -->
+  <div class="px-6 py-6 max-w-7xl mx-auto">
+    {% block content %}
+    {% endblock %}
+  </div>
 
-            <ul class="space-y-2">
-                <li><a href="#" class="text-lg text-teal-500 hover:text-teal-700">About</a></li>
-                <li><a href="{% url 'core:contact' %}" class="text-lg text-teal-500 hover:text-teal-700">Contact</a></li>
-                <li><a href="#" class="text-lg text-teal-500 hover:text-teal-700">Terms of Service</a></li>
-                <li><a href="#" class="text-lg text-teal-500 hover:text-teal-700">Privacy Policy</a></li>
-            </ul>
-        </div>
-    </footer>
+  <!-- Footer -->
+  <footer class="py-6 px-6 bg-gray-800 text-white flex flex-col md:flex-row">
+    <div class="md:w-2/3 pr-0 md:pr-10 mb-6 md:mb-0">
+      <h3 class="mb-5 font-semibold text-gray-400">About</h3>
+      <p class="text-lg text-gray-500">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla convallis egestas rhoncus.</p>
+    </div>
+    <div class="md:w-1/3">
+      <h3 class="mb-5 font-semibold text-gray-400">Menu</h3>
+      <ul class="space-y-2">
+        <li><a href="#" class="text-lg text-teal-500 hover:text-teal-700">About</a></li>
+        <li><a href="{% url 'core:contact' %}" class="text-lg text-teal-500 hover:text-teal-700">Contact</a></li>
+        <li><a href="#" class="text-lg text-teal-500 hover:text-teal-700">Terms of Service</a></li>
+        <li><a href="#" class="text-lg text-teal-500 hover:text-teal-700">Privacy Policy</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <!-- Mobile menu toggle script -->
+  <script>
+    const btn = document.getElementById('mobile-menu-btn');
+    const nav = document.getElementById('nav-links');
+    btn.addEventListener('click', () => {
+      nav.classList.toggle('hidden');
+    });
+  </script>
+
 </body>
 </html>
